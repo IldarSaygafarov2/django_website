@@ -1,0 +1,27 @@
+{% load main_tags %}
+
+{% get_faqs as faqs %}
+
+
+<div class="accordion mt-4" id="accordionExample">
+    {% for faq in faqs %}
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="{% if not forloop.first %}collapsed{% endif %} accordion-button" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#collapseOne-{{ faq.pk }}" aria-expanded="true"
+                    aria-controls="collapseOne">
+                {{ faq.question }}
+            </button>
+        </h2>
+        <!--collapseOne-1 -->
+        <!--collapseOne-2 -->
+        <div id="collapseOne-{{ faq.pk }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+             data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                {{ faq.answer }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
